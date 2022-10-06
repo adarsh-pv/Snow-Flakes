@@ -1,7 +1,7 @@
 const { response } = require("express");
 let express = require("express");
 const twiliocontroller = require("../controllers/twiliocontroller");
-const usercontroller = require("../controllers/usercontroller");
+const usercontroller = require("../controllers/userController");
 let router = express.Router();
 const userModel = require("../model/user-model");
 const usermiddleware = require("../middleware/usermiddleware");
