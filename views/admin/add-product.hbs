@@ -1,0 +1,293 @@
+
+
+
+
+
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+        <h2 style="color: green;">Snow Flakes</h2>
+      </a>
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+         <a class="nav-link" href="/admin/login">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/manageuser">User</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/view_products">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/category">Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/bannermanage">Banner</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/orderstatus">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/coupen">Coupen</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+
+    <!-- Right elements -->
+    <div class="d-flex align-items-center">
+      <!-- Icon -->
+      <a class="text-reset me-3" href="#">
+        <i class="fas fa-shopping-cart"></i>
+      </a>
+
+      <!-- Notifications -->
+
+      <!-- Avatar -->
+    <a type="button" class="btn btn-danger" href="/admin/adminlogout">Logout</a>
+    </div>
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+<form class="form-horizontal" action="/admin/addproducts" id="productids" method="post" enctype="multipart/form-data">
+<fieldset> 
+
+<!-- Form Name -->
+<legend></legend>
+<br>
+<br>
+<br>
+
+
+{{productdetails}}
+
+<!-- Text input-->
+{{!-- <div class="form-group">
+  <label class="col-md-4 control-label" for="product_id">PRODUCT ID</label>  
+  <div class="col-md-4">
+  <input id="product_id" name="product_id" placeholder="PRODUCT ID" class="form-control input-md" required="" type="text">
+    
+  </div>
+</div> --}}
+
+<!-- Text input-->
+{{!-- {{allcategory}} --}}
+
+
+<div class="">
+<div class="form-group">
+  <label class="col-md-4 control-label" for="product_name"></label>  
+  <div class="col-md-4">
+  <input id="productname" placeholder="PRODUCT NAME" name="productname"  class="form-control input-md" required="" type="text">
+    
+  </div>
+</div>
+{{!-- {{allproducts}} --}}
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="product_name_fr"></label>  
+  <div class="col-md-4">
+  <input id="price" disabled placeholder="PRICE" name="price" class="form-control input-md" required="" type="text">
+    
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-4 control-label" for="product_name_fr"></label>  
+  <div class="col-md-4">
+  <input id="mrp"  placeholder="MRP price" name="mrp" class="form-control input-md" required="" type="text">
+    
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-4 control-label" for="product_name"></label>  
+  <div class="col-md-4">
+  <input id="discountprice"  placeholder="DISCOUNT PRICE" name="discountprice" class="form-control input-md" required="" type="text">
+    
+  </div>
+  <div class="btn-group ">
+  {{!-- <button class="btn btn- btn-md dropdown-toggle" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  Table
+  </button> --}}
+  
+                    
+
+            
+  <div class="dropdown-menu">{{#each category}}
+      <a class="dropdown-item" href="#">{{this.categoryname}}</a>
+      <a class="dropdown-item" href="#">{{this.categoryname}}</a>
+      {{/each}}
+
+  </div>
+  <label for="">Category</label>
+                  <select class="select" id="catname" name="catname">
+                    {{#each category}}
+                    <option  value="{{this._id}}">{{this.categoryname}}</option>
+                    {{/each}}
+                  
+                  </select>
+</div>
+</div>
+
+</div>
+
+
+
+
+<!-- Text input-->
+{{!-- <div class="form-group">
+  <label class="col-md-4 control-label " for="available_quantity"></label>  
+  <div class="col-md-4 dropdown-toggle">
+  <input id="available_quantity" name="available_quantity" placeholder="AVAILABLE QUANTITY" class="form-control input-md  " required="" type="text">
+    
+  </div>
+</div> --}}
+        
+
+<!-- Text input-->
+{{!-- <div class="form-group">
+  <label class="col-md-4 control-label" for="product_weight">PRODUCT WEIGHT</label>  
+  <div class="col-md-4">
+  <input id="product_weight" name="product_weight" placeholder="PRODUCT WEIGHT" class="form-control input-md" required="" type="text">
+    
+  </div>
+</div> --}}
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="product_name_fr"></label>  
+  <div class="col-md-4">
+  <input id="stock" name="stock" placeholder="STOCK" class="form-control input-md" required="" type="text">
+    
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label"   for="filebutton">main_image</label>
+  <div class="col-md-4">
+    <input id="filebutton" multiple name="image" id="image" class="input-file" type="file">
+  </div>
+</div>
+<!-- File Button --> 
+{{!-- <div class="form-group">
+  <label class="col-md-4 control-label"  for="filebutton">auxiliary_images</label>
+  <div class="col-md-4">
+    <input id="filebutton" name="filebutton" class="input-file" type="file">
+  </div>
+</div> --}}
+
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="singlebutton"></label>
+  <div class="col-md-4">
+    <button id="singlebutton"  class="btn btn-primary">Submit</button>
+  </div>
+  </div>
+
+</fieldset>
+</form>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
+<script>
+
+$(document).ready(function (){
+  $("#productids").validate({
+    
+    rules:{
+      productname:{
+        required:true,
+        
+       
+      },
+      price:{
+        required:true,
+       
+
+      },
+     mrp:{
+      required:true,
+     
+      },
+     discountprice:{
+        required:true,
+       
+      },
+      catname:{
+        required:true,
+       
+      },
+      stock:{
+        required:true,
+       
+      },
+      image:{
+        required:true,
+       
+      },
+      
+    },
+
+    
+    messages:{
+      productname:{
+        required:"Enter product name",
+        
+      },
+      mrp:{
+        required:"Enter MRP price",
+            
+        },
+      discountprice:{
+        required:"Enter discount price",
+   
+ 
+      },
+      catname:{
+      required:"choose category",
+   
+    },
+    stock:{
+      required:"Enter stock limit",
+     
+    },
+    
+    image:{
+      required:"Select image",
+     
+    },
+     
+    
+    
+    }
+  
+  });
+})
+
+
+
+
+
+</script>

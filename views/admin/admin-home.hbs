@@ -1,0 +1,424 @@
+{{!--
+<!DOCTYPE html>
+<html lang="en"> --}}
+
+
+<body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner"
+            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-light navbar-light">
+                <a href="index.html" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"></i>Snow Flakes</h3>
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    <div class="position-relative">
+                        {{!-- <img class="rounded-circle" src="/lib/img/user.jpg" alt="" style="width: 40px; height: 40px;"> --}}
+                        <div
+                            class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+                        </div>
+                    </div>
+                    <div class="ms-3">
+                        {{!-- <h6 class="mb-0">Jhon Doe</h6> --}}
+                        <span>Admin</span>
+                    </div>
+                </div>
+                {{!-- <li class="nav-item">
+                    <a type="submit" action="post" href="/admin/adminlogout" class="btn btn-primary">Logout</a>
+                </li> --}}
+                <div class="navbar-nav w-100">
+                    <a href="/admin" class="nav-item nav-link active"><i class="fa fa--alt me-2"></i>Dashboard</a>
+                    <div class="nav-item dropdown">
+                        <a href="/manageuser" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                class="fa fa-chart-bar me-2"></i>Category</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="/admin/category" class="dropdown-item">View Catergory</a>
+                            <a href="/admin/addcategory" class="dropdown-item">Add Category</a>
+                            {{!-- <a href="/admin/updatecategory" class="dropdown-item">Edit Category</a> --}}
+                        </div>
+                    </div>
+                    <a href="/admin/manageuser" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>User</a>
+                    {{!-- <a href="/admin/products" class="nav-item nav-link"><i class="fa fa- me-2"></i>Products</a>
+                    --}}
+                    <div><a href="/manageuser" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                class="fa fa-chart-bar me-2"></i>Products</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="/admin/view_products" class="dropdown-item">View Products</a>
+                            <a href="/admin/addproducts" class="dropdown-item">Add Products</a>
+                        </div>
+                        {{!-- <a href="" class="nav-item nav-link"><i class="fa fa--line me-2"></i>Banner</a> --}}
+                        <div><a href="/admin/bannermanage" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                                    class="fa fa-chart-bar me-2"></i>Banners</a>
+                            <div class="dropdown-menu bg-transparent border-0">
+                                <a href="/admin/bannermanage" class="dropdown-item">View Banners</a>
+                                <a href="/admin/addbanner" class="dropdown-item">Add Banner</a>
+                          
+                            </div>
+                             <div><a href="/admin/coupen" class="nav-link dropdown-toggle" ><i
+                                    class="fa fa-chart-bar me-2"></i>Coupen</a>
+                            
+                            <div><a href="/admin/orderstatus" class="nav-link dropdown-toggle"><i
+                                    class="fa fa-chart-bar me-2"></i>Orders</a>
+                            <div class="dropdown-menu bg-transparent border-0">   
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+           <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+       {{!-- <h2 style="color: green;">Snow Flakes</h2> --}}
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/login">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/manageuser">User</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/view_products">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/category">Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/bannermanage">Banner</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="/admin/orderstatus">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/coupen">Coupen</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+
+    <!-- Right elements -->
+    <div class="d-flex align-items-center">
+      <!-- Icon -->
+      {{!-- <a class="text-reset me-3" href="#">
+        <i class="fas fa-shopping-cart"></i>
+      </a> --}}
+
+      <!-- Notifications -->
+
+      <!-- Avatar -->
+    <a type="button" class="btn btn-danger" href="/admin/adminlogout">Logout</a>
+    </div>
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+            <!-- Navbar End -->
+
+
+            <!-- Sale & Revenue Start -->
+
+
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-line fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Total users</p>
+                                <h6 class="mb-0">{{usercount}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Total Orders</p>
+                                <h6 class="mb-0">{{orderscount}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-area fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Total products</p>
+                                <h6 class="mb-0">{{productcount}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Total COD's</p>
+                                <h6 class="mb-0">{{cod}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Total Other payments</p>
+                                <h6 class="mb-0">{{netbanking}}</h6>
+                            </div>
+                        </div>
+                    </div>
+        
+                    
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Total Revenue</p>
+                                <h6 class="mb-0">{{income}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4" style="color: red;">
+                            <i class="fa fa-chart-bar fa-3x text-primary" ></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Cancelled Orders</p>
+                                <h6 class="mb-0">{{cancelled}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-bars fa-3x text-primary" ></i>
+                            <div class="ms-3">
+                                <p class="mb-2">Today Income</p>
+                                <h6 class="mb-0">{{dailyIncome}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- Sale & Revenue End -->
+
+
+            <!-- Sales Chart Start -->
+            
+           
+
+
+
+ <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-12">
+                        <div class="bg-light text-center rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Sales report</h6>
+                               
+                            </div>
+                            <div class="d-flex">
+                           <canvas id="myChart" style="width:50%;max-width:600px"></canvas>
+                            <canvas id="myCharts" style="width:50%;max-width:400px"></canvas>
+                            </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+    window.addEventListener('load', (event)=>{
+        axios({
+            url:'/admin/getdash',
+            method:'get'
+        }).then((response)=>{
+            console.log(response,"response is here")
+var xValues = [response.data.status.dateArray[0],response.data.status.dateArray[1],response.data.status.dateArray[2],response.data.status.dateArray[3],response.data.status.dateArray[4]];
+var yValues = [response.data.status.dateSale[0],response.data.status.dateSale[1],response.data.status.dateSale[2],response.data.status.dateSale[3],response.data.status.dateSale[4]];
+var barColors = ["blue", "green","red","orange","brown"];    
+
+new Chart("myChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Order range"
+    }
+  }
+  })
+  })
+});
+</script>
+
+
+                </div>
+                
+            </div>
+
+
+           
+
+<script>
+var xValues = ["Pending", "Delivered", "Cancelled","shipped"];
+var yValues = [{{pendings}},{{delivered}},{{cancelled}},{{shipped}}];
+var barColors = ["blue", "green","red"];
+
+
+new Chart("myCharts", {
+  type: "pie",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    title: {
+      display: true,
+      is3D:true,    
+      text: "Order Status"
+    }
+  }
+});
+</script>
+            
+        {{!-- /////////////////////////////////////////    --}}
+
+
+<!-- Recent Sales Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Salse Report</h6>
+                        <a href="/admin/salesreport">Show All</a>
+                    </div>
+                    <iframe src="/admin/salesreport" title="Sale Roport" style="width:100% ; height: 400px">
+</iframe>
+                    {{!-- <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-dark">
+                                    <th scope="col"><input class="form-check-input" type="checkbox"></th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Invoice</th>
+                                    <th scope="col">Customer</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox"></td>
+                                    <td>01 Jan 2045</td>
+                                    <td>INV-0123</td>
+                                    <td>Jhon Doe</td>
+                                    <td>$123</td>
+                                    <td>Paid</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox"></td>
+                                    <td>01 Jan 2045</td>
+                                    <td>INV-0123</td>
+                                    <td>Jhon Doe</td>
+                                    <td>$123</td>
+                                    <td>Paid</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox"></td>
+                                    <td>01 Jan 2045</td>
+                                    <td>INV-0123</td>
+                                    <td>Jhon Doe</td>
+                                    <td>$123</td>
+                                    <td>Paid</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox"></td>
+                                    <td>01 Jan 2045</td>
+                                    <td>INV-0123</td>
+                                    <td>Jhon Doe</td>
+                                    <td>$123</td>
+                                    <td>Paid</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="form-check-input" type="checkbox"></td>
+                                    <td>01 Jan 2045</td>
+                                    <td>INV-0123</td>
+                                    <td>Jhon Doe</td>
+                                    <td>$123</td>
+                                    <td>Paid</td>
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> --}}
+                </div>
+            </div>
+            <!-- Recent Sales End -->
+
+
+
+        {{!-- ////////////////////////////////////////////////////// --}}
+
+
+            <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">Snow Flakes</a>, All Right Reserved.
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+{{!-- /////////////////////////////////////////////////////////////////////////////////////////// --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- JavaScript Libraries -->
+
+
+</body>
+
+</html>

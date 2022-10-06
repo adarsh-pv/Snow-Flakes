@@ -1,0 +1,194 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+        <h2 style="color: green;">Snow Flakes</h2>
+      </a>
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/login">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/manageuser">User</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/view_products">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/category">Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/bannermanage">Banner</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/orderstatus">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/coupen">Coupen</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+
+    <!-- Right elements -->
+    <div class="d-flex align-items-center">
+      <!-- Icon -->
+      <a class="text-reset me-3" href="#">
+        <i class="fas fa-shopping-cart"></i>
+      </a>
+
+      <!-- Notifications -->
+
+      <!-- Avatar -->
+    <a type="button" class="btn btn-danger" href="/admin/adminlogout">Logout</a>
+    </div>
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+
+<div class="container-fluid">
+
+
+  <a href="/admin/addbanner"><button class="btn btn-success">Add banner</button></a>
+
+  <div class="row mt-5">
+    <div class="col-md-10 mx-auto border ">
+      <table class="table table-striped" id="usertable">
+        <thead>
+          <tr>
+            <th scope="col">Banner Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Image</th>
+            <th scope="col">Action</th>
+
+
+
+          </tr>
+        </thead>
+        <tbody>
+
+          {{#each bannerdetails}}
+
+          <tr>
+            <td>{{this.bannername}}</td>
+             <td>{{this.description}}</td>
+
+        
+
+            <td>
+              <img src="/{{this.image.[0]}}" alt="" width="50em">
+            </td>
+
+            <td>
+              <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal{{this._id}}"
+                href="/admin/updatebanner/{{this._id}}">Edit</a>
+
+              <a class="btn btn-danger" href="/admin/deletebanner/{{this._id}}"
+                onclick="return confirm('Are you sure you want to Delete {{this.bannername}} ?')">Delete</a>
+            </td>
+            {{!--
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              Launch demo modal
+            </button> --}}
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal{{this._id}}" tabindex="-1" role="dialog"
+              aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+
+                    <form action="/admin/updatebanner/{{this._id}}" method="post" enctype="multipart/form-data">
+                      <div class="form-outline d-flex justify-content-center mb-3 form-control-sm shadow  mt-5 ">
+                        <input type="text" id="form3Example4cdg" required name="bannername"
+                          class="form-control-lg form-control " placeholder="Enter Banner name"
+                          value="{{this.bannername}}" />
+                        {{!-- <label class="form-label" for="form3Example4cdg"></label> --}}
+
+                      </div>
+                       <div class="form-outline d-flex justify-content-center mb-3 form-control-sm shadow  mt-5 ">
+                        <input type="text" id="form3Example4cdg" required name="description"
+                          class="form-control-lg form-control " placeholder="Enter Description name"
+                          value="{{this.description}}" />
+                        {{!-- <label class="form-label" for="form3Example4cdg"></label> --}}
+
+                      </div>
+                      <br>  
+                      {{response}}
+                      {{#if bannerexist}}
+
+                      <p style="color: red ">Banner already exist</p>
+
+                      {{/if}}
+
+                      <div class="form-group d-flex justify-content-center ">
+                        <label for="exampleFormControlFile1">Example file input</label>
+                        <img src="/{{this.image.[0]}}" alt="" width="50em">
+                        <input type="file" multiple name="image" class="form-control-file" id="exampleFormControlFile1">
+                      </div>
+                      <div class="d-flex justify-content-center mt-3">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        {{!-- <button type="submit" class="btn btn-primary">Submit</button> --}}
+                      </div>
+                    </form>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/each}}
+
+
+
+
+
+
+            {{!-- <td>
+              <a class="btn btn-success" href="/admin/update-category/{{this._id}}">Edit</a>
+
+              <a class="btn btn-danger" href="/admin/delete-category/{{this._id}}"
+                onclick="return confirm('Are you sure you want to Delete {{this.categoryname}} ?')">Delete</a>
+            </td> --}}
+
+          </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+
+  <script>
+    $(document).ready(function () {
+      $('#usertable').DataTable();
+    });
+  </script>
+</div>

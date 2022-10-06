@@ -1,0 +1,202 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+        <h2 style="color: green;">Snow Flakes</h2>
+      </a>
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/login">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/manageuser">User</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/view_products">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/category">Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/bannermanage">Banner</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/orderstatus">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/coupen">Coupen</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+
+    <!-- Right elements -->
+    <div class="d-flex align-items-center">
+      <!-- Icon -->
+      <a class="text-reset me-3" href="#">
+        <i class="fas fa-shopping-cart"></i>
+      </a>
+
+      <!-- Notifications -->
+
+      <!-- Avatar -->
+    <a type="button" class="btn btn-danger" href="/admin/adminlogout">Logout</a>
+    </div>
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+
+<form class="container mt-5" action="/admin/updateproduct/{{productdata.data._id}}" method="post" id="editproduct" enctype="multipart/form-data">
+  <div class="form-row">
+    <div class="form-group col-md-6 ">
+      <label for="inputEmail4">Product Name</label>
+      <input type="text"  class="form-control border-success" name="productname" id="productname" value="{{productdata.data.productname}}">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Price</label>
+      <input type="number" disabled class="form-control border-success" name="price" id="price"  placeholder="Enter Price" value="{{productdata.data.price}}">
+    </div>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="inputAddress">Discount Price</label>
+    <input type="nummber" class="form-control border-success" id="discountprice" name="discountprice"  placeholder="Enter Discount price" value="{{productdata.data.discountprice}}">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="inputAddress">MRP Price</label>
+    <input type="nummber" class="form-control border-success" id="mrp" name="mrp"  placeholder="Enter Discount price" value="{{productdata.data.MRP}}">
+  </div>
+  
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputCity">Stocks</label>
+      <input type="number" class="form-control border-success" name="stock" id="inputCity" value="{{productdata.data.stock}}">
+    </div>
+    <div class="form-group col-md-4 border-success ">
+      <label for="inputState">Category name</label>
+      <select id="inputState" name="categoryname" class="form-control">
+        
+        {{#each response}}
+                    <option  value="{{this._id}}">{{this.categoryname}}</option>
+                    {{/each}}
+    
+      </select>
+    </div>
+    {{!-- <div class="form-group col-md-2">
+      <label for="inputZip">Zip</label>
+      <input type="text" class="form-control border-success" id="inputZip">
+    </div> --}}
+
+  </div>
+  <div class="form-group">
+  <br>
+  </div>
+  <div class="form-group">
+  <label class="col-md-4 control-label"   for="filebutton">main_image</label>
+  <div class="col-md-4">
+    <img src="/{{productdata.data.image.[0]}}" alt="" width="50em">
+    <input id="filebutton" multiple name="image" class="input-file" type="file">
+  </div>
+</div>
+<br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+   <br>
+   <br>
+   {{!-- <a href="/addpproducts"><button  class="btn btn-success">Add product</button></a> --}}
+</form>
+   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
+<script>
+
+$(document).ready(function (){
+  $("#editproduct").validate({
+    
+    rules:{
+      productname:{
+        required:true,
+        
+       
+      },
+      price:{
+        required:true,
+       
+
+      },
+     mrp:{
+      required:true,
+     
+      },
+     discountprice:{
+        required:true,
+       
+      },
+      catname:{
+        required:true,
+       
+      },
+      stock:{
+        required:true,
+       
+      },
+      image:{
+        required:true,
+       
+      },
+      
+    },
+
+    
+    messages:{
+      productname:{
+        required:"Enter productname",
+        
+      },
+      mrp:{
+        required:"Enter mrp price",
+            
+        },
+      discountprice:{
+        required:"Enter dicount price",
+   
+ 
+      },
+      stock:{
+      required:"Enter stock limit",
+   
+    },
+    catname:{
+      required:"Select category",
+     
+    },
+    image:{
+      required:"choose image",
+     
+    },
+    
+    
+    
+    }
+  
+  });
+})
+
+
+
+
+
+</script>

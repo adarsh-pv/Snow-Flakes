@@ -1,0 +1,299 @@
+
+<style>
+  
+.title{
+    margin-bottom: 5vh;
+}
+.card{
+    margin: auto;
+  
+    width: 90%;
+    margin-top: 50px;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 1rem;
+    border: transparent;
+}
+@media(max-width:767px){
+    .card{
+        margin: 3vh auto;
+    }
+}
+.cart{
+    background-color: #fff;
+    padding: 4vh 5vh;
+    border-bottom-left-radius: 1rem;
+    border-top-left-radius: 1rem;
+}
+@media(max-width:767px){
+    .cart{
+        padding: 4vh;
+        border-bottom-left-radius: unset;
+        border-top-right-radius: 1rem;
+    }
+}
+.summary{
+    background-color: #ddd;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    padding: 4vh;
+    color: rgb(65, 65, 65);
+}
+@media(max-width:767px){
+    .summary{
+    border-top-right-radius: unset;
+    border-bottom-left-radius: 1rem;
+    }
+}
+.summary .col-2{
+    padding: 0;
+}
+.summary .col-10
+{
+    padding: 0;
+}.row{
+    margin: 0;
+}
+.title b{
+    font-size: 1.5rem;
+}
+.main{
+    margin: 0;
+    padding: 2vh 0;
+    width: 100%;
+}
+.col-2, .col{
+    padding: 0 1vh;
+}
+a{
+    padding: 0 1vh;
+}
+.close{
+    margin-left: auto;
+    font-size: 0.7rem;
+}
+img{
+    width: 3.5rem;
+}
+.back-to-shop{
+    margin-top: 4.5rem;
+}
+h5{
+    margin-top: 4vh;
+}
+hr{
+    margin-top: 1.25rem;
+}
+form{
+    padding: 2vh 0;
+}
+select{
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1.5vh 1vh;
+    margin-bottom: 4vh;
+    outline: none;
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+}
+input{
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1vh;
+    margin-bottom: 4vh;
+    outline: none;
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+}
+input:focus::-webkit-input-placeholder
+{
+      color:transparent;
+}
+.btn{
+    background-color: #000;
+    border-color: #000;
+    color: white;
+    width: 100%;
+    font-size: 0.7rem;
+    margin-top: 4vh;
+    padding: 1vh;
+    border-radius: 0;
+}
+.btn:focus{
+    box-shadow: none;
+    outline: none;
+    box-shadow: none;
+    color: white;
+    -webkit-box-shadow: none;
+    /* -webkit-user-select: none; */
+    transition: none; 
+}
+.btn:hover{
+    color: white;
+}
+a{
+    color: black; 
+    text-decoration: none;
+}
+a:hover{
+    color: black;
+}
+ #code{
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253) , rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: center;
+} 
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+
+<div class="card">
+    
+            <div class="row">
+                <div class="col-md-8 cart">
+                    <div class="title">
+                        <div class="row">
+                            <div class="col"><h4><b>Snow flakes</b></h4></div>
+                            <div class="col align-self-center text-right text-muted">{{cartCount}} Items</div>
+                        </div>
+                    </div> 
+                     {{#each productdetails}}
+                     {{#each this.Cartdata}}
+                    <div class="row border-top border-bottom" style="color: green; text-shadow: #000; ">
+                        <div class="row main align-items-center">
+                            <a class="col-2" href="/singleproduct/{{this.productId._id}}"><img class="img-fluid" src="/{{this.productId.image.[0]}}"></a>
+                            <div class="col">
+                                <div class="row text-muted"></div>
+                                <div class="row">{{this.productId.productname}}</div>
+                            </div>
+
+                                
+                            <div class="col bold" style="cursor: pointer;">
+                                 {{#if  (gt this.quantity 1)}}
+                                
+                                <a onclick="decrementqty('{{this.productId._id}}')">-</a>
+                                {{else}}
+                                <a href="" class="text-muted">-</a>
+                                {{/if}}
+                               
+                               <span id="{{this.productId._id}}">{{this.quantity}}</span><a   onclick="incrementqty('{{this.productId._id}}')">+</a>
+                                
+                            </div>
+                            <div class="col">
+                                <div class="row text-muted"></div>
+                                <div class="row">₹ {{this.productId.MRP}}</div>
+                            </div>
+                            <div class="col">
+                                <div class="row text-muted"></div>
+                                <div class="row" style="color: red;">₹ {{this.productId.discountprice}}</div>
+                            </div>
+                            <div class="col">
+                                <div class="row text-muted"></div>
+                                <div class="row"><del>₹ {{this.productId.MRP}}</del></div>
+                            </div>
+                            <div class="col">
+                                <div class="row text-muted"></div>
+                                <div class="row">₹{{this.productId.price}}</div>
+                            </div>
+                             
+                            
+                          
+                            <div class="col" style="cursor: pointer;">
+                                 <a onclick="deletecart('{{this.productId._id}}')"  onclick="return confirm('Are you sure you want to remove')"><div class="col"><span class="close">&#10005;</span></div></a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    {{/each}}
+                    {{/each}}
+
+                    {{!-- <div class="row">
+                        <div class="row main align-items-center">
+                            <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/ba3tvGm.jpg"></div>
+                            <div class="col">
+                                <div class="row text-muted">Shirt</div>
+                                <div class="row">Cotton T-shirt</div>
+                            </div>
+                            <div class="col">
+                                <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
+                            </div>
+                            <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+                        </div>
+                    </div> --}}
+                    {{!-- <div class="row border-top border-bottom">
+                        <div class="row main align-items-center">
+                            <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/pHQ3xT3.jpg"></div>
+                            <div class="col">
+                                <div class="row text-muted">Shirt</div>
+                                <div class="row">Cotton T-shirt</div>
+                            </div>
+                            <div class="col">
+                                <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
+                            </div>
+                            <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+                        </div>
+                    </div> --}}
+                    <div class="back-to-shop"><a href="/shop">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+                </div>
+                <div class="col-md-4 summary">
+                    <div><h5><b>Summary</b></h5></div>
+                    <hr>
+                    <div class="row">
+                        <div class="col" style="padding-left:0;">Items : {{cartCount}}</div>
+                        <div class="col text-right">₹{{totalamount}}</div>
+                    </div>
+                    <br>
+                        <h4>Mega Offer</h4>
+                        <p>If you buy 500 and above enjoyy coupens up to limit !</p>
+                    <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                        <div class="col">TOTAL PRICE</div>
+                        <div class="col text-right">₹{{totalamount}}</div>
+                    </div>
+                    <a class="btn" href="/checkout">CHECKOUT</a>
+                </div>
+            </div>
+            
+        </div>
+
+ 
+   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+          <script>
+    function decrementqty (id){
+        
+        const res = axios.post(`/decrementqty/${id}`,{}).then((e)=>{
+           
+            e.data.response
+            document.getElementById(id).innerHTML = e.data.quantity
+
+   window.location.reload();
+        })   
+    
+    }
+    
+    function incrementqty(id) {
+        
+        const res = axios.post(`/incrementqty/${id}`,{}).then((e)=>{
+            e.data.response
+            
+            document.getElementById(id).innerHTML=e.data.quantity
+   window.location.reload();
+    
+        })
+    }
+   </script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+let deletecart = async (id)=>{
+    const res = axios.post(`/deletecart/${id}`, {}).then((e)=>{
+      toastr.options={"positionClass":"toast-bottom-right",
+      "debug":false,
+        "onclick": null,
+  "fadeIn": 300,
+  "fadeOut": 1000,
+  "timeOut": 5000,
+  "extendedTimeOut": 1000,}
+           toastr.error('Item deleted.....')
+  setTimeout(()=>{
+    location.reload()
+  },1000)
+
+    })
+}
+</script>

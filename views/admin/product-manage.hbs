@@ -1,0 +1,134 @@
+
+<div class="container-fluid">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+       <h2 style="color: green;">Snow Flakes</h2>
+      </a>
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/login">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/manageuser">User</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/view_products">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/category">Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/bannermanage">Banner</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/orderstatus">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/coupen">Coupen</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+
+    <!-- Right elements -->
+    <div class="d-flex align-items-center">
+      <!-- Icon -->
+      <a class="text-reset me-3" href="#">
+        <i class="fas fa-shopping-cart"></i>
+      </a>
+
+      <!-- Notifications -->
+
+      <!-- Avatar -->
+    <a type="button" class="btn btn-danger" href="/admin/adminlogout">Logout</a>
+    </div>
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+  </nav>
+
+    <a href="/admin/addproducts"><button  class="btn btn-success">Add product</button></a>
+
+  <div class="row mt-5">
+    <div class="col-md-10 mx-auto border ">
+      <table class="table table-striped" id="usertable">
+        <thead>
+          <tr>
+            <th scope="col">Product Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Mrp price</th>
+             <th scope="col">Discount Price</th>
+             <th scope="col">Catergory name</th>
+             <th scope="col">Image</th>
+             <th scope="col">Stock</th>
+             <th scope="col">Action</th>
+             
+              
+          </tr>
+        </thead>
+        <tbody>
+         
+          {{#each productdetails.data}}
+         
+          <tr>
+            <td>{{this.productname}}</td>
+            <td>₹{{this.price}}</td>
+            <td>₹ {{this.MRP}}</td>
+            <td>₹{{this.discountprice}}</td>
+            <td>{{categoryname.categoryname}}</td>
+            
+         <td>
+              <img src="/{{this.image.[0]}}" alt="" width="50em">
+            </td>
+            <td>{{this.stock}}</td>
+             <td>
+              <a class="btn btn-success" href="/admin/update-product/{{this._id}}">Edit</a>
+             
+              <a class="btn btn-danger" href="/admin/delete-product/{{this._id}}" onclick="return confirm('Are you sure you want to Delete {{this.categoryname}} ?')">Delete</a>
+             </td>
+          {{/each}}
+
+            
+
+           
+          
+          
+             {{!-- <td>
+              <a class="btn btn-success" href="/admin/update-category/{{this._id}}">Edit</a>
+             
+              <a class="btn btn-danger" href="/admin/delete-category/{{this._id}}" onclick="return confirm('Are you sure you want to Delete {{this.categoryname}} ?')">Delete</a>
+             </td> --}}
+            
+          </tr>
+         
+           
+        </tbody>
+      </table>
+    </div>
+  </div>
+ 
+
+
+
+  <script>
+    $(document).ready(function () {
+      $('#usertable').DataTable();
+    });
+  </script>
+</div>

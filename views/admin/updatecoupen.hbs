@@ -1,0 +1,165 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+        <h2 style="color: green;">Snow Flakes</h2>
+      </a>
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+         <a class="nav-link" href="/admin/login">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/manageuser">User</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/view_products">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/category">Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/bannermanage">Banner</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/orderstatus">Orders</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="/admin/coupen">Coupen</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+
+    <!-- Right elements -->
+    <div class="d-flex align-items-center">
+      <!-- Icon -->
+      <a class="text-reset me-3" href="#">
+        <i class="fas fa-shopping-cart"></i>
+      </a>
+
+      <!-- Notifications -->
+
+      <!-- Avatar -->
+    <a type="button" class="btn btn-danger" href="/admin/adminlogout">Logout</a>
+    </div>
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+
+<div class="container mt-5">
+    <form action="/admin/updatecoupen/{{coupendata._id}}" id="editcoupon" method="post">
+  <!-- Name input -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form5Example1">Coupen name</label>
+
+    <input type="text" id="coupenname" name="coupenname" value="{{coupendata.Coupenname}}" class="form-control" />
+  </div>
+
+  <!-- Email input -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form5Example2">Coupen Code</label>
+
+    <input  id="coupencode" name="coupencode" value="{{coupendata.CoupenCode}}" class="form-control" />
+  </div>
+
+     <div class="form-outline mb-4">
+    <label class="form-label" for="form5Example2">Discount price</label>
+
+    <input  id="discount" name="discount" value="{{coupendata.Discountprice}}" class="form-control" />
+  </div>
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form5Example2">Discount limit</label>
+
+    <input  id="limit" name="limit" value="{{coupendata.Coupenlimit}}" class="form-control" />
+  </div>
+  <!-- Checkbox -->
+  <div class="form-check d-flex justify-content-center mb-4">
+    <input class="form-check-input me-2" type="checkbox" value="" id="form5Example3" checked />
+    <label class="form-check-label" for="form5Example3">
+      I have read and agree to the terms
+    </label>
+  </div>
+
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary btn-block mb-4">Done</button>
+</form>
+</div>
+
+   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
+<script>
+
+$(document).ready(function (){
+  $("#editcoupon").validate({
+    
+    rules:{
+      coupenname:{
+        required:true,
+        
+       
+      },
+      coupencode:{
+        required:true,
+       
+
+      },
+     discount:{
+      required:true,
+     
+      },
+     limit:{
+        required:true,
+       
+      },
+      
+      
+    },
+
+    
+    messages:{
+      coupenname:{
+        required:"Enter coupon name",
+        
+      },
+      coupencode:{
+        required:"Enter coupon code",
+            
+        },
+      discount:{
+        required:"Enter discount price",
+   
+ 
+      },
+       limit:{
+      required:"Enter discount limit",
+   
+    },
+    
+    
+    
+    }
+  
+  });
+})
+
+
+
+
+
+</script>

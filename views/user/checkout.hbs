@@ -1,0 +1,683 @@
+
+
+  <!--Main layout-->
+  <main class="mt-5 pt-4">
+    <div class="container wow fadeIn">
+
+      <!-- Heading -->
+      {{!-- <h2 class="my-5 h2 text-center">Checkout form</h2> --}}
+
+      <!--Grid row-->
+      <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-8 mb-4">
+
+          <!--Card-->
+          <div class="card">
+
+            <!--Card content-->
+{{!-- <form  class="card-body" action="/orderplace" method="post"> --}}
+
+              <!--Grid row-->
+              <div class="row">
+
+                <!--Grid column-->
+                <div class="col-md-6 mb-2">
+
+                  <!--firstName-->
+                  {{!-- <div class="md-form ">
+                    <input type="text" id="firstName" name="firstname" class="form-control">
+                    <label for="firstName" class="">First name</label>
+                  </div> --}}
+
+                </div>
+                <!--Grid column-->
+                {{!-- {{viewaddress.Lastname}} --}}
+
+                <!--Grid column-->
+                {{!-- <div class="col-md-6 mb-2">
+
+                  <!--lastName-->
+                  <div class="md-form">
+                    <input type="text" id="lastName" name="lastname" class="form-control">
+                    <label for="lastName" class="">Last name</label>
+                  </div>
+
+                </div> --}}
+                <!--Grid column-->
+
+              </div>
+              <!--Grid row-->
+
+
+              <!--Username-->
+              
+              <a type="submit" href="/address" class="btn btn-secondary">Add Address</a>
+              <div class="md-form input-group pl-0 mb-5">
+             {{!-- <form action="/checkoutAddress" method="post"> --}}
+                <label for="state">Address</label>
+                  <select class="custom-select  d-block fw-light w-100 address" id="state" name="address" style="height: 50px;" required>
+                      
+                       {{#each viewaddress}}
+                        
+                    <option value="{{this._id}}">{{this.Name}}  {{this.Lastname}}  {{this.Housename}}  {{this.Pincode}}  {{this.Locality}}   {{this.Landmark}}   {{this.State}} ,     num : {{this.Number}}         <i class="bi bi-pen"></i>           <i class="bi bi-trash"></i> </option>
+                      
+                      {{/each}}  
+                    
+                                                               
+                  </select>
+                    
+                  {{!-- </form> --}}
+
+                 
+
+
+
+
+              </div>
+
+              <!--email-->
+              {{!-- <div class="md-form mb-5">
+                <input type="number" id="email" class="form-control" name="number" placeholder="number">
+                <label for="email" class="">Number</label>
+              </div> --}}
+
+
+              
+
+              <!--Grid row-->
+              <div class="row">
+
+                
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-6 mb-4">
+
+                 
+                  <div class="invalid-feedback">
+                    Please provide a valid state.
+                  </div>
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-6 mb-4">
+
+                 
+
+                </div>
+                <!--Grid column-->
+
+              </div>
+              <!--Grid row-->
+
+              
+
+              
+             <!-- Group of default radios - option 1 -->
+            <h4>Payment Type</h4>
+                <div class="form-check">
+                 <input class="form-check-input" type="radio" value="COD" name="payment" id="COD">
+                 <label class="form-check-label" for="flexCheckDefault">
+                COD
+                 </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" value="netbanking" name="payment" id="netbanking" checked>
+                  <label class="form-check-label" for="flexCheckChecked">
+                  UPI
+                 </label>
+                </div>
+            
+            
+  
+             <br>
+            <a class="btn btn-primary btn-lg btn-block" id="placeorder" data-bs-toggle="modal" data-bs-target="#exampleModal" type="submit">Place order</a>
+
+              
+
+          </div>
+          <!--/.Card-->
+
+        </div>
+        {{!-- ////---------------------modallll --}}
+
+        <!-- Button trigger modal -->
+        {{!-- <button type="button" class="btn btn-light btn-lg" data-mdb-toggle="modal"
+          data-mdb-target="#exampleModal">
+          <i class="fas fa-info me-2"></i> Get information
+        </button> --}}
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header border-bottom-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body text-start text-black p-4">
+                <h5 class="modal-title text-uppercase mb-5" id="exampleModalLabel">{{userdata.name}}</h5>
+                <h4 class="mb-5" style="color: #35558a;">Confirm your order</h4>
+                <p class="mb-0" style="color: #35558a;">Payment summary</p>
+                <hr class="mt-2 mb-4"
+                  style="height: 0; background-color: transparent; opacity: .75; border-top: 2px dashed #9e9e9e;">
+ {{#each productdetails}}
+                     {{#each this.Cartdata}}
+                <div class="d-flex justify-content-between">
+                  <p class="fw-bold mb-0">{{this.productId.productname}}(Qty:{{this.quantity}})</p>
+                  <p class="text-muted mb-0"></p>
+                </div>
+                {{/each}}
+        {{/each}}
+                
+                <div class="d-flex justify-content-between">
+                  <p class="small mb-0">Original Price</p>
+                  <p class="small mb-0">₹ {{mrptotal}}</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <p class="small mb-0">Discount price</p>
+                  <p class="small mb-0">₹ {{totaldiscount}}</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <p class="small mb-0">total amount</p>
+                  <p class="small mb-0"><del>₹ {{mrptotal}}</del></p>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <p class="small">Shipping fee</p>
+                  <p class="fw-bold" style="color: chartreuse;">Free</p>
+                </div>
+                    {{#if applaycoupen.grandtotal }}
+                <div class="d-flex justify-content-between pb-1">
+                  <p class=class="fw-bold"  style="color: #35558a;">Total Amount : </p>
+                  <p class="fw-bold" name="grandtotal" style="color: #35558a;">  ₹ {{applaycoupen.grandtotal}}</p>
+                </div>
+                      {{else}}
+                      <div class="d-flex justify-content-between pb-1">
+                  <p class="fw-bold"  style="color: #35558a;">Total Amount : </p>
+                  <p class="fw-bold"  id="bigamount" name="totalamount" style="color: #35558a;">₹ {{totalamount}}</p>
+                </div>
+                {{/if}}
+                <div class="modal-footer d-flex justify-content-center border-top-0 py-4">
+                <button class="btn btn-primary btn-lg mb-1" onclick="checkout()" style="background-color: #35558a;">
+                  Place order
+                </button>
+                {{!-- <button id="checkout" onclick="checkout()">hai</button> --}}
+              </div>
+
+                {{!-- <script>
+   //   let radiobuttom = function(){
+           //   document.querySelector('input[name="payment"]:checked').value;    
+        //  if(document.getElementById('COD').checked) {
+  //Male radio button is checked
+  
+   //console.log("cod")
+//}else if(document.getElementById('netbanking').checked) {
+  //Female radio button is checked
+//confirm("Are you sure continue")
+ //console.log("upi")
+
+ 
+      
+}
+      }
+        </script> --}}
+              </div>
+           
+
+            </div>
+          </div>
+        </div>
+
+        {{!-- //----------------------------------------------------example --}}
+
+
+        
+        
+        
+
+     
+
+
+
+        {{!-- //-------------------------------------------- --}}
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-4 mb-4">
+
+          <!-- Heading -->
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Your cart Items</span>
+            <span class="badge badge-secondary badge-pill">3</span>
+          </h4>
+<input type="text" hidden class="grandTotal" id="grandTotalInput" name="cart" value="{{productdetails}}">
+          <!-- Cart -->
+          {{#each productdetails}}
+                     {{#each this.Cartdata}}
+                     
+          <ul class="list-group mb-3 z-depth-1">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+              <div>
+                
+                <h6 class="my-0">{{this.productId.productname}}</h6>
+                <h6 class="my-0" style="color: red;">discont price : {{this.productId.discountprice}}</h6>
+                {{!-- <small class="text-muted">quantity</small> --}}
+              </div>
+              {{!-- <span class="text-muted">{{this.quantity}}</span> --}}
+              <div class="">{{this.quantity}}×{{this.productId.price}}</div>
+            </li>
+           
+             {{/each}}
+          {{/each}}
+          
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+               
+                {{!-- <h6 class="my-0">Second product</h6>
+                <small class="text-muted">Brief description</small>
+              </div>
+              <span class="text-muted">$8</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Third item</h6>
+                <small class="text-muted">Brief description</small>
+              </div>
+              <span class="text-muted">$5</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between bg-light">
+              <div class="text-success">
+                <h6 class="my-0">Promo code</h6>
+                <small>EXAMPLECODE</small>
+              </div>
+              <span class="text-success">-$5</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total (USD)</span> 
+              <strong>$20</strong>/
+            </li> --}}
+            <div class="input-group" style="color:green;  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;" >
+               {{!-- type="text" class="form-control" placeholder="total Amount " aria-label="Recipient's username" aria-describedby="basic-addon2" --}}
+               MRP: ₹ {{mrptotal}}
+            <div class="input-group" style="color:green;  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;" >
+               {{!-- type="text" class="form-control" placeholder="total Amount " aria-label="Recipient's username" aria-describedby="basic-addon2" --}}
+               Discount Price: ₹ {{totaldiscount}}
+               <div class="input-group" style="color:green;  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;" ><del>
+               {{!-- type="text" class="form-control" placeholder="total Amount " aria-label="Recipient's username" aria-describedby="basic-addon2" --}}
+               Total Amount: ₹ {{mrptotal}}</del>
+                 {{#if applaycoupen.grandtotal }}
+                <div class="d-flex justify-content-between pb-1">
+                  <p class=class="fw-bold"  style="color: #35558a;">Total Amount : </p>
+                  <p class="fw-bold" name="grandtotal" style="color: #35558a;">  ₹ {{applaycoupen.grandtotal}}</p>
+                </div>
+                      {{else}}
+                      <div class="d-flex justify-content-between pb-1">
+                  <p class="fw-bold"  style="color: #35558a;">Total Amount : </p>
+                  <p class="fw-bold"  id="totoalamount" name="totalamount" style="color: #35558a;">  ₹ {{totalamount}}</p>
+                </div>
+                {{/if}}
+                <input type="text" hidden class="grandTotal" id="grandTotalInput" name="totalamount" value="{{totalamount}}">
+                 <input type="text" hidden class="grandTotal" id="grandTotalInput" name="discount" value="{{applaycoupen.discount}}">
+                 <input type="text" hidden class="grandTotal" id="grandTotalInput" name="grandtotal" value="{{applaycoupen.grandtotal}}">
+             {{#if applaycoupen.grandtotal}}
+                <li class="list-group-item d-flex justify-content-between">
+              <span style="color: rgb(22, 196, 22); font-weight: 600;">Congratulation {{userdetails.name}} Your Coupen Applied 
+              <h4 id="totalPrice"><p id="couponcongrats">₹{{applaycoupen.grandtotal}}</p></h4></span>
+            </li>
+             {{else}}
+             <p></p>
+            {{/if}}
+          
+          </ul>
+            
+ 
+{{!-- ///////////////////////----------coupen------------------------------------ --}}
+
+
+<!--Modal Launch Button-->
+{{!-- <button type="button" class="btn btn-info btn-lg openmodal" data-toggle="modal" data-target="#myModal">Open
+  Modal</button> --}}
+
+<!--Division for Modal-->
+<div id="myModal" class="modal fade"  role="dialog ">
+ {{#each coupens}}
+  <div class="modal-dialog">
+
+    <!--Modal Content-->
+    <div class="modal-content mt-3">
+
+      <!-- Modal Header-->
+      <div class="modal-header">
+        <h3>Discount offer: ₹ {{this.Discountprice}}off</h3>
+
+        <!--Close/Cross Button-->
+        <button type="button" class="close" data-bs-dismiss="modal" style="color: white;">&times;</button>
+      </div>
+
+      <!-- Modal Body-->
+      <div class="modal-body">
+        <div class="row">
+
+          <!--Gift Icon-->
+          <div class="col text-center">
+            <i class="fa fa-gift fa-4x icon2"></i>
+          </div>
+
+          <!--Modal Text-->
+          <div class="col-8">
+            <p>Alert! it is a one time coupon, if you use one time then do not get any more! that will also effect below coupon limit!<strong>{{this.Coupenname}}</strong></p>
+              <h5>
+              <u></u>
+            </h5>
+            <h6>
+              Hurry! Copy the below code,If you want to applay this coupon<u> You should Buy : {{this.Coupenlimit}} and above</u>
+            </h6>
+            <h3 class="text1">{{this.CoupenCode}}</h3>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Modal Footer-->
+      <div class="modal-footer">
+      
+        <a href="" class="btn btn-outline-danger" data-bs-dismiss="modal">No, thanks</a>
+      </div>
+
+    </div>
+
+  </div>
+  {{/each}}
+</div>
+<style>
+  .modal-dialog{
+    height: 50%;
+    width: 50%;
+    margin: auto;
+}
+
+.text1{
+    color: rgb(18, 55, 6);
+    width: 20%;
+    margin-top: 5%;
+    text-align: center;
+}
+
+.icon2{
+ color: #0e640d;
+}
+
+.modal-header{
+    color: white;
+    background-color: #206507c5;
+
+}
+.openmodal{
+    margin-left: 35%;
+    width: 25%;
+    margin-top: 25%;
+  }
+</style>
+
+
+
+
+
+
+{{!-- ///////////////////////----------coupen------------------------------------ --}}
+
+     </ul>
+          <!-- Cart -->
+          
+{{!-- </form> --}}
+          <!-- Promo code -->
+            <h4><span class="text-muted">Your coupons</span></h4>
+
+          
+            <div class="input-group">
+               <button type="button" class="btn btn-success" data-bs-toggle="modal"  data-bs-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-gift" viewBox="0 0 16 16">
+  <path d="M3 2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0v.006c0 .07 0 .27-.038.494H15a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 14.5V7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h2.038A2.968 2.968 0 0 1 3 2.506V2.5zm1.068.5H7v-.5a1.5 1.5 0 1 0-3 0c0 .085.002.274.045.43a.522.522 0 0 0 .023.07zM9 3h2.932a.56.56 0 0 0 .023-.07c.043-.156.045-.345.045-.43a1.5 1.5 0 0 0-3 0V3zM1 4v2h6V4H1zm8 0v2h6V4H9zm5 3H9v8h4.5a.5.5 0 0 0 .5-.5V7zm-7 8V7H2v7.5a.5.5 0 0 0 .5.5H7z"/>
+</svg></button>
+
+
+                            <input type="text" class="form-control" name="coupenCode" id="coupenCod" placeholder="Promo code" aria-label="Recipient's username" style="text-transform:uppercase" aria-describedby="basic-addon2">
+
+              {{!-- <input type="text" name="coupenCode" id="coupenCod" placeholder="Enter"> --}}
+              <div class="input-group-append">
+                <button class="btn btn-secondary btn-md waves-effect m-0" id="bb" onclick="applyCoupon()">Redeem</button>
+              </div>
+            </div>
+          
+          <!-- Promo code -->
+       {{!-- onclick="applyCoupen('{{this._id}}')" --}}
+      
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+    </div>
+  </main>
+{{!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  <script> --}}
+    {{!--// function applyCoupen (id){
+   //   const response = axios.post(`/applyCoupen/${id}`,{}).then((e)=>{
+       // e.data.response
+       // document.getElementById('coupen').innerHTML = e.data.quantity
+        locataion.reload()
+      })
+    }
+  </script> --}}
+
+  
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+function applyCoupon(){
+  console.log('ffffffffff')
+  let value = document.getElementById('coupenCod').value
+  console.log('val ',value)
+  axios({
+    method:'post',
+    url:'/applyCoupon',
+    data:{
+      code:value
+    }
+  }).then((e)=>{
+    console.log("aaaaaaaaaaa",e.data.applaycoupen.grandtotal)
+    if(e.data.applaycoupen.grandtotal ==undefined){
+      swal({
+        text:"coupon doesn't exist",
+        icon:"warning",
+        button:false,
+        timer:1000
+      })
+    }else{
+let grandTotal= document.getElementById('totoalamount')
+console.log(grandTotal,"jjjjj")
+  grandTotal.innerHTML= e.data.applaycoupen.grandtotal
+  swal({
+    text:"coupon used",
+    icon:"success",
+     button:false,
+        timer:1000
+  })
+  console.log(grandTotal,"qqqq")
+    
+ let bigtotal= document.getElementById('bigamount')
+ bigtotal.innerHTML = e.data.applaycoupen.grandtotal
+    }
+  })
+}
+
+
+
+   const checkout = async()=>{
+      
+      console.log("checkoutttt")
+      const  paymentdetails=$('input[type="radio"][name="payment"]:checked').val();
+      //const deliverydetails= document.getElementById('state')
+      //var text = deliverydetails.options[deliverydetails.selectedIndex].text
+      //console.log(text)
+      //console.log(text,"paymentdetails")
+        console.log(paymentdetails,"paymentdetails")
+        
+        const address = $('.address').val()
+        console.log("adrress,,,,,,,,",address)
+      try{
+      const res =await axios.post('/checkout',{
+        paymentdetails:paymentdetails,
+        deliverydetails:address
+      
+      }).then((e)=>{
+        if(paymentdetails === 'COD'){
+          location.href=`/order/${e.data.orderdetails._id}`
+        }else{
+          razorpayPayment(e.data.data)
+        }
+      }).catch((err)=>{
+        console.log("error:",err)
+      })
+      }catch(error){
+      console.log(error,"error founded")
+    }
+    }
+  
+
+  function razorpayPayment(order){
+   var options = {
+    "key": "rzp_test_iTDo89He1ttYwa", // Enter the Key ID generated from the Dashboard
+    "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Snow Flakes",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id":order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+       
+
+        verifyPayment(response,order)
+    },
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9999999999"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.open();
+    }
+
+
+const verifyPayment = async(payment,order)=>{
+  try{
+    
+    const res =await axios.post('/verifyPayment',{
+      payment,
+      order
+    }).then((e)=>{
+      console.log(e,"e response")
+    if(e.data.status){
+      location.href = `/order/${order.receipt}`;
+    }else{
+      alert("payment failed!")
+    }
+  })
+}catch(error){
+  console.log(error,"error founded")
+}
+}
+  </script>
+  
+  
+ 
+
+ {{!-- function placeorder (id){
+  data:{
+    address : address,
+    paymentoption : paymentment,
+    totalamount,
+    discount
+  }
+      const response = axios.post(`/placeholder/${id}`,{}).then((e)=>{
+        e.data.response
+        document.getElementById('placeorder').innerHTML = e.data.quantity
+        locataion.reload()
+      })
+    } --}}
+  
+  <!--Main layout-->
+
+  <!--Footer-->
+  {{!-- <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+    <!--Call to action-->
+    <div class="pt-4">
+      <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank" role="button">Download MDB
+        <i class="fas fa-download ml-2"></i>
+      </a>
+      <a class="btn btn-outline-white" href="https://mdbootstrap.com/education/bootstrap/" target="_blank" role="button">Start free tutorial
+        <i class="fas fa-graduation-cap ml-2"></i>
+      </a>
+    </div>
+    <!--/.Call to action-->
+
+    <hr class="my-4">
+
+    <!-- Social icons -->
+    <div class="pb-4">
+      <a href="https://www.facebook.com/mdbootstrap" target="_blank">
+        <i class="fab fa-facebook-f mr-3"></i>
+      </a>
+
+      <a href="https://twitter.com/MDBootstrap" target="_blank">
+        <i class="fab fa-twitter mr-3"></i>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4" target="_blank">
+        <i class="fab fa-youtube mr-3"></i>
+      </a>
+
+      <a href="https://plus.google.com/u/0/b/107863090883699620484" target="_blank">
+        <i class="fab fa-google-plus-g mr-3"></i>
+      </a>
+
+      <a href="https://dribbble.com/mdbootstrap" target="_blank">
+        <i class="fab fa-dribbble mr-3"></i>
+      </a>
+
+      <a href="https://pinterest.com/mdbootstrap" target="_blank">
+        <i class="fab fa-pinterest mr-3"></i>
+      </a>
+
+      <a href="https://github.com/mdbootstrap/bootstrap-material-design" target="_blank">
+        <i class="fab fa-github mr-3"></i>
+      </a>
+
+      <a href="http://codepen.io/mdbootstrap/" target="_blank">
+        <i class="fab fa-codepen mr-3"></i>
+      </a>
+    </div>
+    <!-- Social icons -->
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+      © 2018 Copyright:
+      <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> MDBootstrap.com </a>
+    </div>
+    <!--/.Copyright-->
+
+  </footer> --}}
+  <!--/.Footer-->

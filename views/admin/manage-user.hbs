@@ -1,0 +1,119 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+       <h2 style="color: green;">Snow Flakes</h2>
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/login">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/manageuser">User</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/view_products">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/category">Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/bannermanage">Banner</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/orderstatus">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/coupen">Coupen</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+
+    <!-- Right elements -->
+    <div class="d-flex align-items-center">
+      <!-- Icon -->
+      <a class="text-reset me-3" href="#">
+        <i class="fas fa-shopping-cart"></i>
+      </a>
+
+      <!-- Notifications -->
+
+      <!-- Avatar -->
+    <a type="button" class="btn btn-danger" href="/admin/adminlogout">Logout</a>
+    </div>
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+
+<div class="container-fluid">
+
+
+
+  <div class="row mt-5">
+    <div class="col-md-10 mx-auto border ">
+      <table class="table table-striped" id="usertable">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Status</th>
+
+            <th scope="col">Change Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each users}}
+          <tr>
+            <td>{{this.name}}</td>
+
+            <td>{{this.email}}</td>
+            <td>{{this.phonenumber}}</td>
+            {{#if this.status}}
+            <td style="color: red;">Block</td>
+            {{else}}
+            <td style="color: green;">Active</td>
+            {{/if}}
+
+            {{!-- <td>{{this.place}}</td>
+            <td>{{this.pincode}}</td> --}}
+            <td>
+              {{#if this.status}}
+              <a class="btn btn-success" href="/admin/active-user/{{this._id}}"
+                onclick="return confirm('Are you sure you want to active user {{this.name}} ?')">unblock</a>
+              {{else}}
+              <a class="btn btn-danger" href="/admin/block-user/{{this._id}}"
+                onclick="return confirm('Are you sure you want to block user {{this.name}} ?')">Block</a>
+              {{/if}}
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </body>
+
+
+
+  <script>
+    $(document).ready(function () {
+      $('#usertable').DataTable();
+    });
+  </script>
+</div>
+<!doctype html>
+<html lang="en">

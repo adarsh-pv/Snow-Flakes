@@ -1,0 +1,146 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      <a class="navbar-brand mt-2 mt-lg-0" href="#">
+  <h2 style="color: green;">Snow Flakes</h2>
+      </a>
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/login">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/manageuser">User</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/view_products">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/category">Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/bannermanage">Banner</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/orderstatus">Orders</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/coupen">Coupen</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+
+    <!-- Right elements -->
+    <div class="d-flex align-items-center">
+      <!-- Icon -->
+      <a class="text-reset me-3" href="#">
+        <i class="fas fa-shopping-cart"></i>
+      </a>
+
+      <!-- Notifications -->
+
+      <!-- Avatar -->
+    <a type="button" class="btn btn-danger" href="/admin/adminlogout">Logout</a>
+    </div>
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+
+
+
+<form action="/admin/addbanner" method="post" id="banner" enctype="multipart/form-data">
+     <div style="width:70% ; margin-left: 8cm;" class="form-outline d-flex justify-content-center mb-3 form-control-sm shadow  mt-5 ">
+                  <input type="text" id="form3Example4cdg" required name="bannername" class="form-control-lg form-control " id="bannername" placeholder="Enter Banner name" />
+                  {{!-- <label class="form-label" for="form3Example4cdg"></label> --}}
+                 
+                </div>
+                 <div style="width:70% ; margin-left: 8cm;" class="form-outline d-flex justify-content-center  form-control-sm shadow  mt-5 ">
+                  <input type="text" id="form3Example4cdg" required name="description" id="description" class="form-control-lg form-control " placeholder="Enter descripotion" />
+                  {{!-- <label class="form-label" for="form3Example4cdg"></label> --}}
+                  
+                </div>
+                {{response}}
+                 {{#if bannerexist}}
+                  
+                  <p style="color: red ">Banner already exist</p>
+
+                  {{/if}}
+<br>  
+  <div class="form-group d-flex justify-content-center ">
+    <label for="exampleFormControlFile1">Example file input</label>
+    <input type="file"  multiple name="image" id="image" class="form-control-file" id="exampleFormControlFile1">
+  </div>
+  <div class="d-flex justify-content-center mt-3">
+  <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
+<script>
+
+$(document).ready(function (){
+  $("#banner").validate({
+    
+    rules:{
+     bannername:{
+        required:true,
+        
+       
+      },
+      description:{
+        required:true,
+        
+       
+      },
+      image:{
+        required:true,
+       
+
+      },
+     
+      
+    },
+
+    
+    messages:{
+      bannername:{
+        required:"Enter Category name",
+        
+      },
+      description:{
+        required:"Enter Category name",
+        
+      },
+      image:{
+        required:"select an image",
+            
+        },
+      
+    
+    
+    }
+  
+  });
+})
+
+
+
+
+
+</script>

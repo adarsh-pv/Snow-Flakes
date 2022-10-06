@@ -1,0 +1,635 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+    body {
+        background-color: #ffff;
+        font-family: 'Montserrat', sans-serif
+    }
+
+    .card {
+        border: none
+    }
+
+
+
+    .totals tr td {
+        font-size: 13px
+    }
+
+    .footer {
+        background-color: #eeeeeea8
+    }
+
+    .footer span {
+        font-size: 12px
+    }
+
+    .product-qty span {
+        font-size: 12px;
+        color: #dedbdb
+    }
+</style>
+
+<div class=" mt-5 mb-5">
+
+    <div class="row d-flex justify-content-center">
+
+        <div class="col-md-8">
+
+            <div class="card">
+
+
+                <div class="text-left logo p-2 px-5">
+
+                    {{!-- <img src="https://i.imgur.com/2zDU056.png" width="50"> --}}
+
+
+                </div>
+
+                <div class="invoice p-5">
+
+                    <h3 style="color:green;">Your Orders!</h3>
+
+                    <span class="font-weight-bold d-block mt-4">Hello, {{userdata.name}}</span>
+
+
+                    <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
+
+                        <table class="table">
+
+
+                            <thead>
+                                <tr>
+                                    <td>
+                                        <div class="py-2">
+
+                                            <span class="d-block "
+                                                style="color: darkgreen;font-weight: 500;">Productname</span>
+
+
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="py-2">
+
+                                            <span class="d-block " style="color: darkgreen;font-weight: 500;">Order
+                                                Date</span>
+
+
+                                        </div>
+                                    </td>
+
+
+
+                                    <td>
+                                        <div class="py-2">
+
+                                            <span class="d-block"
+                                                style="color: darkgreen; font-weight: 500;">Payment</span>
+
+
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="py-2">
+
+                                            <span class="d-block" style="color: darkgreen; font-weight: 500;">Shiping
+                                                Address</span>
+
+
+                                        </div>
+
+
+                                    </td>
+                                    <td>
+
+                                        <div class="py-2">
+
+                                            <span class="d-block" style="color: darkgreen; font-weight: 500;">Order
+                                                Status</span>
+
+
+                                        </div>
+                                    </td>
+                                    <td>
+
+                                        <div class="py-2">
+
+                                            <span class="d-block" style="color: darkgreen; font-weight: 500;">Total
+                                                Amount</span>
+
+
+                                        </div>
+
+                                    </td>
+                                    <td>
+
+                                        <div class="py-2">
+
+                                            <span class="d-block" style="color: darkgreen; font-weight: 500;">Delivery
+                                                Status</span>
+
+
+                                        </div>
+
+                                    </td>
+
+
+                                </tr>
+                            </thead>
+                    </div>
+                    <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
+
+
+
+                        <tbody>
+                            <tr>
+                                {{#each orders}}
+
+
+                                <td>
+                                    {{#each this.OrderItems}}
+                                    <div class="py-2" style="color:green;" <span>🟢
+                                        {{this.productId.productname}}</span>
+
+                                    </div>
+                                    {{/each}}
+                                </td>
+
+                                {{!-- {{/each}} --}}
+
+
+
+                                {{!-- {{#each orders}} --}}
+                                <td>
+                                    <div class="py-2">
+
+                                        <span>{{format this.createdAt}}</span>
+
+                                    </div>
+                                </td>
+
+
+
+                                <td>
+                                    <div class="py-2">
+
+                                        <span style="color: green; font-weight: 600;">{{this.paymentdetails}}</span>
+
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="py-2">
+
+                                        <span>{{this.deliverydetails.Name}} {{this.deliverydetails.Lastname}}
+                                            {{this.deliverydetails.Locality}} {{this.deliverydetails.Housename}}
+                                            {{this.deliverydetails.State}}</span>
+
+                                    </div>
+
+
+                                </td>
+                                {{#if (eq this.productstatus "Cancelled")}}
+
+                                <td>
+
+                                    <div class="py-2">
+
+                                        <span
+                                            style="color: rgb(180, 17, 17); font-weight: 600;">{{this.productstatus}}</span>
+
+                                    </div>
+                                </td>
+                                {{else}}
+                                <td>
+
+                                    <div class="py-2">
+
+                                        <span
+                                            style="color: rgb(36, 211, 9); font-weight: 600;">{{this.productstatus}}</span>
+
+                                    </div>
+                                </td>
+                                {{/if}}
+                                {{#if this.grandtotal}}
+                                <td class="mt-5>
+
+                                    <div class="py-2">
+
+
+                                    </div>
+
+                                    <div class="py-2">
+
+                                        <span style="color: green;font-weight: 700;">{{this.grandtotal}}</span>
+
+                                    </div>
+
+                                </td>
+                                {{else}}
+                                 <td class="mt-5>
+
+                                    <div class="py-2">
+
+
+                                    </div>
+
+                                    <div class="py-2">
+
+                                        <span style="color: green;font-weight: 700;">{{this.totalprice}}</span>
+
+                                    </div>
+
+                                </td>
+                                {{/if}}
+                                <td>
+
+                                    <div class="py-2">
+
+                                        <span style="font-weight: 600;">{{this.deliveystatus}}</span>
+
+                                    </div>
+                                </td>
+                                <td>
+
+
+                                    <a href="/singleorder/{{this._id}}"><svg xmlns="http://www.w3.org/2000/svg"
+                                            width="20" height="20" fill="currentColor" class="bi bi-eye-fill"
+                                            viewBox="0 0 16 16">
+                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                            <path
+                                                d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                                        </svg></a>
+                    </div>
+                    </td>
+                    {{#if (or (eq this.productstatus "pending") (eq this.productstatus "shipped"))}}
+
+                    <td>
+
+                        <div class="py-2">
+
+                            <span style="font-weight: 600;"><button type="button" class="btn btn-danger border-radius"
+                                    onclick="cancelorders('{{this._id}}')"
+                                    style=" background-color: red;">Cancel</button></span>
+
+                        </div>
+                    </td>
+                    {{else}}
+                    {{/if}}
+
+                    </tr>
+                    </tbody>
+                    {{/each}}
+                    </table>
+
+                    {{!-- //-------------------modall --}}
+
+
+
+
+
+
+
+
+
+                    <div class="product border-bottom table-responsive">
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+                    <div class="row d-flex justify-content-end">
+
+                        <div class="col-md-5">
+
+                            <table class="table table-borderless">
+
+                                {{!-- <tbody class="totals">
+
+                                    <tr>
+                                        <td>
+                                            <div class="text-left">
+
+                                                <span class="text-muted">Subtotal</span>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="text-right">
+                                                <span>₹ {{orderdata.totalprice}}</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td>
+                                            <div class="text-left">
+
+                                                <span class="text-muted">Shipping Fee</span>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="text-right">
+                                                <span>--</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td>
+                                            <div class="text-left">
+
+                                                <span class="text-muted">Tax Fee</span>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="text-right">
+                                                <span>--</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td>
+                                            <div class="text-left">
+
+                                                <span class="text-muted">Discount</span>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="text-right">
+                                                <span class="text-success">$168.50</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr class="border-top border-bottom">
+                                        <td>
+                                            <div class="text-left">
+
+                                                <span class="font-weight-bold">Subtotal</span>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="text-right">
+                                                <span class="font-weight-bold">$238.50</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody> --}}
+
+                            </table>
+
+                        </div>
+
+
+
+                    </div>
+
+
+                    {{!-- <p>We will be sending shipping confirmation email when the item shipped successfully!</p>
+                    <p class="font-weight-bold mb-0">Thanks for shopping with us!</p>
+                    <span>Nike Team</span> --}}
+
+
+
+
+
+                </div>
+
+
+                <div class="d-flex justify-content-between footer p-3">
+
+                    <span>Need Help? visit our <a href="#"> help center</a></span>
+                    <span>12 June, 2020</span>
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<style>
+    .title {
+        margin-bottom: 5vh;
+    }
+
+    .card {
+        margin: auto;
+
+        width: 90%;
+        margin-top: 50px;
+        box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 1rem;
+        border: transparent;
+    }
+
+    @media(max-width:767px) {
+        .card {
+            margin: 3vh auto;
+        }
+    }
+
+    .cart {
+        background-color: #fff;
+        padding: 4vh 5vh;
+        border-bottom-left-radius: 1rem;
+        border-top-left-radius: 1rem;
+    }
+
+    @media(max-width:767px) {
+        .cart {
+            padding: 4vh;
+            border-bottom-left-radius: unset;
+            border-top-right-radius: 1rem;
+        }
+    }
+
+    .summary {
+        background-color: #ddd;
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        padding: 4vh;
+        color: rgb(65, 65, 65);
+    }
+
+    @media(max-width:767px) {
+        .summary {
+            border-top-right-radius: unset;
+            border-bottom-left-radius: 1rem;
+        }
+    }
+
+    .summary .col-2 {
+        padding: 0;
+    }
+
+    .summary .col-10 {
+        padding: 0;
+    }
+
+    .row {
+        margin: 0;
+    }
+
+    .title b {
+        font-size: 1.5rem;
+    }
+
+    .main {
+        margin: 0;
+        padding: 2vh 0;
+        width: 100%;
+    }
+
+    .col-2,
+    .col {
+        padding: 0 1vh;
+    }
+
+    a {
+        padding: 0 1vh;
+    }
+
+    .close {
+        margin-left: auto;
+        font-size: 0.7rem;
+    }
+
+    img {
+        width: 3.5rem;
+    }
+
+    .back-to-shop {
+        margin-top: 4.5rem;
+    }
+
+    h5 {
+        margin-top: 4vh;
+    }
+
+    hr {
+        margin-top: 1.25rem;
+    }
+
+    form {
+        padding: 2vh 0;
+    }
+
+    select {
+        border: 1px solid rgba(0, 0, 0, 0.137);
+        padding: 1.5vh 1vh;
+        margin-bottom: 4vh;
+        outline: none;
+        width: 100%;
+        background-color: rgb(247, 247, 247);
+    }
+
+    input {
+        border: 1px solid rgba(0, 0, 0, 0.137);
+        padding: 1vh;
+        margin-bottom: 4vh;
+        outline: none;
+        width: 100%;
+        background-color: rgb(247, 247, 247);
+    }
+
+    input:focus::-webkit-input-placeholder {
+        color: transparent;
+    }
+
+    .btn {
+        background-color: #000;
+        border-color: #000;
+        color: white;
+        width: 100%;
+        font-size: 0.7rem;
+        margin-top: 4vh;
+        padding: 1vh;
+        border-radius: 0;
+    }
+
+    .btn:focus {
+        box-shadow: none;
+        outline: none;
+        box-shadow: none;
+        color: white;
+        -webkit-box-shadow: none;
+        /* -webkit-user-select: none; */
+        transition: none;
+    }
+
+    .btn:hover {
+        color: white;
+    }
+
+    a {
+        color: black;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: black;
+    }
+
+    #code {
+        background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253), rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
+        background-repeat: no-repeat;
+        background-position-x: 95%;
+        background-position-y: center;
+    }
+</style>
+
+
+
+
+
+{{!-- //-------------------modall --}}
+
+
+
+
+
+
+</div>
+<script>
+    function cancelorders(id) {
+        console.log("axios response", id)
+        axios({
+            method: 'post',
+            url: '/cancelorder/' + id
+
+        }).then((response) => {
+            console.log(response, 'this is response');
+
+            location.reload()
+        }).catch((error) => {
+            console.log(error, "catch error at delivered axios.")
+        })
+    }
+</script>

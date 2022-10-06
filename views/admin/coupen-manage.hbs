@@ -1,0 +1,292 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+        <!-- Toggle button -->
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+            data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Navbar brand -->
+            <a class="navbar-brand mt-2 mt-lg-0" href="#">
+                <h2 style="color: green;">Snow Flakes</h2>
+            </a>
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="/admin/login">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/manageuser">User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/view_products">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/category">Category</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/bannermanage">Banner</a>
+                </li>
+                <li class="nav-item">
+          <a class="nav-link" href="/admin/orderstatus">Orders</a>
+        </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/coupen">Coupen</a>
+                </li>
+            </ul>
+            <!-- Left links -->
+        </div>
+        <!-- Collapsible wrapper -->
+
+        <!-- Right elements -->
+        <div class="d-flex align-items-center">
+            <!-- Icon -->
+            <a class="text-reset me-3" href="#">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+
+            <!-- Notifications -->
+
+            <!-- Avatar -->
+            <a type="button" class="btn btn-danger" href="/admin/adminlogout">Logout</a>
+        </div>
+        <!-- Right elements -->
+    </div>
+    <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+
+<div class="container-fluid">
+
+
+    {{!-- <button class="btn btn-success" data-toggle="modal" data-target="#coupen">Add Coupen</button> --}}
+
+
+
+    <!-- Button trigger modal -->
+    <a type="button" class="btn btn-primary" data-bs-target="#exampleModalss" data-bs-toggle="modal">
+        Add Coupen
+    </a>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalss" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add coupon</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/admin/coupen" method="post" id="addcoupon">
+                        <!-- Name input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form5Example1">Coupen name</label>
+
+                            <input type="text" id="coupenname" name="coupenname" class="form-control" />
+                        </div>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form5Example2">Coupen code</label>
+
+                            <input  id="coupencode" name="coupencode" class="form-control" />
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form5Example2">Discount price</label>
+
+                            <input id="discount" name="discount" class="form-control" />
+                        </div>
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form5Example2">Discount price Limit</label>
+
+                            <input id="coupenlimit" name="coupenlimit" class="form-control" />
+                        </div>
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form5Example2">Date</label>
+
+                            <input id="date" disabled name="date" class="form-control" />
+                        </div>
+                        <!-- Checkbox -->
+                        <div class="form-check d-flex justify-content-center mb-4">
+                            <input class="form-check-input me-2" type="checkbox" value="" id="form5Example3" checked />
+                            <label class="form-check-label" for="form5Example3">
+                                I have read and agree to the terms
+                            </label>
+                        </div>
+
+                        <!-- Submit button -->
+                        {{!-- <button type="submit" class="btn btn-primary btn-block mb-4">Subscribe</button> --}}
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="row mt-5">
+        <div class="col-md-10 mx-auto border ">
+            <table class="table table-striped" id="usertable">
+                <thead>
+                    <tr>
+                        <th scope="col">Coupen Name</th>
+                        <th scope="col">Coupen code</th>
+                        <th scope="col">Discount</th>
+                        <th scope="col">Couopen limit</th>
+                         <th scope="col">Date</th>
+                        <th scope="col">Action</th>
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {{#each getcoupens}}
+
+                    <tr>
+                        <td>{{this.Coupenname}}</td>
+                        <td>{{this.CoupenCode}}</td>
+                        <td>{{this.Discountprice}}</td>
+                        <td>{{this.Coupenlimit}}</td>
+                        <td>{{this.Date}}</td>
+                        
+
+
+
+
+                        <td>
+                            <a class="btn btn-success" href="/admin/updatecoupen/{{this._id}}">Edit</a>
+
+                            <a class="btn btn-danger" href="/admin/deletecoupen/{{this._id}}"
+                                onclick="return confirm('Are you sure you want to Delete {{this.bannername}} ?')">Delete</a>
+                        </td>
+                        {{!--
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Launch demo modal
+                        </button> --}}
+
+                        <!-- Modal -->
+
+                        {{/each}}
+
+
+
+
+
+
+                        {{!-- <td>
+                            <a class="btn btn-success" href="/admin/update-category/{{this._id}}">Edit</a>
+
+                            <a class="btn btn-danger" href="/admin/delete-category/{{this._id}}"
+                                onclick="return confirm('Are you sure you want to Delete {{this.categoryname}} ?')">Delete</a>
+                        </td> --}}
+
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('#usertable').DataTable();
+        });
+    </script>
+</div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
+<script>
+
+$(document).ready(function (){
+  $("#addcoupon").validate({
+    
+    rules:{
+      coupenname:{
+        required:true,
+        
+       
+      },
+      coupencode:{
+        required:true,
+       
+
+      },
+     discount:{
+      required:true,
+     
+      },
+     coupenlimit:{
+        required:true,
+       
+      },
+      date:{
+        required:true,
+       
+      },
+      
+    },
+
+    
+    messages:{
+      coupenname:{
+        required:"Enter coupon name",
+        
+      },
+      coupencode:{
+        required:"Enter coupon code",
+            
+        },
+      discount:{
+        required:"Enter discount price",
+   
+ 
+      },
+      coupenlimit:{
+      required:"choose coupon limit",
+   
+    },
+    
+    
+    
+     
+    
+    
+    }
+  
+  });
+})
+
+
+
+
+
+</script>
