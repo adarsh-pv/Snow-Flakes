@@ -14,7 +14,7 @@ const { resolve } = require('path');
 const bannerrController = require('../controllers/bannerrController');
 const bannermodel = require('../model/banner-model');
 const cartController = require('../controllers/cartController');
-const usercontroller = require('../controllers/usercontroller');
+const usercontroller = require('../controllers/userController');
 
 
 let verifylogin=(req,res,next)=>{
