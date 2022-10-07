@@ -23,6 +23,7 @@ const { changepassword } = require("../controllers/userController");
 // const mongoose=require('mongoose')
 const multer = require('multer');
 const ordermodel = require("../model/ordermodel");
+const { reject } = require("bcrypt/promises");
 
 /* GET home page. */
 
@@ -321,10 +322,10 @@ router.get("/singleproduct/:_id",usermiddleware.isblocked,(req, res,next) => {
           user: true,
         });
       // });
-    });
+    }).catch((err)=>{
+      next(err)
+    })
   })
-  }).catch((err)=>{
-    next(err)
   })
   }else{
     console.log("luluuu");
@@ -396,6 +397,7 @@ router.get("/cart",usermiddleware.isblocked, verifylogin, (req, res) => {
   // })
   // })
   router.post("/addtocart/:id",usermiddleware.isblocked,verifylogin, (req, res) => {
+    try{
     cartController
       .addproductdetails(req.session.user._id)
       .then(async (productdetails) => {
@@ -415,6 +417,9 @@ router.get("/cart",usermiddleware.isblocked, verifylogin, (req, res) => {
       .catch((err) => {
         next(err);
       });
+    }catch(error){
+      reject(error)
+    }
   }),
   ///////////////////////////////////////
   router.get("/addtocarts/:id",usermiddleware.isblocked, verifylogin, (req, res) => {

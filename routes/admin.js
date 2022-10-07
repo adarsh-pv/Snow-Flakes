@@ -352,15 +352,17 @@ router.get('/view_products',(req,res)=>{
   res.redirect('/admin')
  }
 })
-router.get('/addproducts',(req,res)=>{
+router.get('/addproducts',(req,res,next)=>{
   categoryController.getcategory().then((category)=>{
     // console.log("ggggggggggggggggggggggggggg");
     // console.log(category);
     res.render('admin/add-product',{category,layout:'manage-userlayout'})
+  }).catch((err)=>{
+    next()
   })
 })
 //add-product//////////////////
-router.post('/products',(req,res)=>{
+router.post('/products',(req,res,next)=>{
   console.log(req.body);
     productController.addproduct(req.body).then((allproducts)=>{
       productController.getprice(req.body).then((pice)=>{
@@ -375,6 +377,8 @@ router.post('/products',(req,res)=>{
     res.render('admin/admin-login')
   }
 })
+}).catch((error)=>{
+  next(error)
 })
 
 });

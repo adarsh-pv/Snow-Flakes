@@ -85,14 +85,19 @@ module.exports={
     // },
     getPoductvalue:(productID)=>{
         return new Promise(async(resolve,reject)=>{
-            let response={}
+            try{
+                let response={}
           let product = await productmodel.findOne({_id:productID}).populate("categoryname").lean()
          
           response.status;
           response.data=product;
           console.log("ushafuafjskk");
           console.log(response);
-          resolve(response)
+          resolve(response) 
+            }catch(error){
+                reject(error)
+            }
+           
          
         }) 
     },

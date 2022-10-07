@@ -10,8 +10,9 @@ module.exports={
         console.log(categorydata,"cateeeggooorryyy");
         return new Promise(async (resolve,reject)=>{
 
-            const category = await categoryModel.findOne({categoryname: categorydata.categoryname,image:categorydata.image}).lean()
-            const response = {
+            const category = await categoryModel.findOne({categoryname: categorydata.categoryname}).lean()
+            console.log(category,'!!!!!!!!!!!!!!!!!!');
+            let response = {
                 exist:false,
             }
             if(!category){
@@ -36,6 +37,7 @@ module.exports={
     },
 
         getcategory: () =>{
+    try{
     return new Promise(async(resolve,reject)=>{
         const categoryname = await categoryModel.find().lean()
         console.log("ffffffffffffffffffffff");
@@ -43,6 +45,9 @@ module.exports={
         resolve(categoryname)
 
     })
+}catch(error){
+    reject(error)
+}
 },
 
    
@@ -65,11 +70,15 @@ getcategorydata: (categoryid)=>{
 updatecategory:(categoryid,categoryDetails)=>{
     console.log(categoryDetails,"details of category");
     return new Promise((resolve,reject)=>{
-        
+        try{
         categoryModel.findByIdAndUpdate(categoryid,{categoryname:categoryDetails.categoryname,image:categoryDetails.image}).then((response)=>{
             console.log(response);
         resolve(response)
     })
+}catch(err){
+    reject(err)
+}
+
 })
 },
 getcategoryinsingle:(data)=>{
