@@ -528,9 +528,6 @@ https://templatemo.com/tm-559-zay-shop
         const addtocart = async (id) => {
             const res = await axios.post(`/addtocart/${id}`, {}).then((e) => {
                 swal("Good job!", "Item added to the Cart!", "success")
-                 
-
-            
                 setTimeout(() => {
                     window.location.reload()
                 }, 1000)
@@ -538,8 +535,6 @@ https://templatemo.com/tm-559-zay-shop
         }
         </script>
         <script>
-    
-
         const wishlist = async (id) => {
             
             const res = await axios.post(`/wishlist/${id}`, {}).then((e) => {
@@ -556,13 +551,6 @@ https://templatemo.com/tm-559-zay-shop
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-
-
-
-
-    
-
 
 </body>
 
