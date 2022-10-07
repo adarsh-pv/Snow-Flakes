@@ -302,7 +302,7 @@ router.get("/shop", usermiddleware.isblocked,(req, res) => {
 
 //single product page//////////////
 
-router.get("/singleproduct/:_id",usermiddleware.isblocked,(req, res) => {
+router.get("/singleproduct/:_id",usermiddleware.isblocked,(req, res,next) => {
   if(req.session.user){
     console.log("luluuu");
   userid = req.session.user._id;
@@ -323,7 +323,9 @@ router.get("/singleproduct/:_id",usermiddleware.isblocked,(req, res) => {
       // });
     });
   })
-  });
+  }).catch((err)=>{
+    next(err)
+  })
   }else{
     console.log("luluuu");
  
@@ -341,7 +343,9 @@ router.get("/singleproduct/:_id",usermiddleware.isblocked,(req, res) => {
         })
        
         });
-      });
+      }).catch((err)=>{
+        next(err);
+      })
   
   }
   
