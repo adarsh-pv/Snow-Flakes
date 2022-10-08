@@ -229,6 +229,12 @@ router.get("/phonenumber",usermiddleware.isblocked, (req, res) => {
 //     }
 //   })
 // })
+
+////////tologin////
+router.get('/tologin',(req,res)=>{
+  req.session.destroy();
+  res.redirect('/login');
+})
 ////otp veryfying/////////////////////
 router.get("/otpverify",usermiddleware.isblocked, (req, res) => {
   res.render("user/otpverify");
@@ -249,7 +255,7 @@ router.post("/otpverify", (req, res) => {
           .updateuserverify(req.session.phonenumber)
           .then((response) => {
             console.log(response);
-            res.redirect("/");
+            res.redirect("/tologin");
           });
       } else {
         res.render("user/otpverify");
