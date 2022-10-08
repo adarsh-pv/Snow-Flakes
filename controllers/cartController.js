@@ -217,6 +217,8 @@ let Helpers = {
               console.log("its an error");
               (response.cartempty = true), resolve(response);
             }
+          }else{
+            resolve(response)
           }
         });
       });
