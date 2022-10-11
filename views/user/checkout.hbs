@@ -540,6 +540,7 @@ console.log(grandTotal,"jjjjj")
           location.href=`/order/${e.data.orderdetails._id}`
         }else{
           razorpayPayment(e.data.data)
+          console.log(e.data.data,"responseeee")
         }
       }).catch((err)=>{
         console.log("error:",err)
